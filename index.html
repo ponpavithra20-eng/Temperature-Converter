@@ -1,34 +1,107 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Temperature Converter</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <title>Temperature Converter</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to right, #74ebd5, #ACB6E5);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      background: white;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0px 5px 20px rgba(0,0,0,0.2);
+      text-align: center;
+      width: 300px;
+    }
+
+    h2 {
+      margin-bottom: 20px;
+    }
+
+    input {
+      width: 90%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      border: none;
+      border-radius: 8px;
+      background: #4CAF50;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #45a049;
+    }
+
+    .result {
+      margin-top: 15px;
+      font-weight: bold;
+      color: #333;
+    }
+  </style>
 </head>
+
 <body>
 
-<div class="container">
-    <h1>🌡 Temperature Converter</h1>
+  <div class="container">
+    <h2>🌡️ Temperature Converter</h2>
 
-    <input type="number" id="temp" placeholder="Enter Temperature">
+    <input type="number" id="celsius" placeholder="Enter Celsius">
+    <button onclick="convertToFahrenheit()">Convert to Fahrenheit</button>
 
-    <select id="unit">
-        <option value="C">Celsius ➜ Fahrenheit</option>
-        <option value="F">Fahrenheit ➜ Celsius</option>
-    </select>
+    <input type="number" id="fahrenheit" placeholder="Enter Fahrenheit">
+    <button onclick="convertToCelsius()">Convert to Celsius</button>
 
-    <div class="buttons">
-        <button onclick="convertTemp()">Convert</button>
-        <button onclick="resetFields()">Reset</button>
-    </div>
+    <div class="result" id="result"></div>
+  </div>
 
-    <h2 id="result"></h2>
-    <p id="formula"></p>
-    <p id="message"></p>
-</div>
+  <script>
+    // Celsius to Fahrenheit
+    function convertToFahrenheit() {
+      let c = document.getElementById("celsius").value;
 
-<script src="script.js"></script>
+      if (c === "") {
+        document.getElementById("result").innerHTML = "Please enter Celsius value";
+        return;
+      }
+
+      let f = (c * 9/5) + 32;
+      document.getElementById("result").innerHTML =
+        c + "°C = " + f.toFixed(2) + "°F";
+    }
+
+    // Fahrenheit to Celsius
+    function convertToCelsius() {
+      let f = document.getElementById("fahrenheit").value;
+
+      if (f === "") {
+        document.getElementById("result").innerHTML = "Please enter Fahrenheit value";
+        return;
+      }
+
+      let c = (f - 32) * 5/9;
+      document.getElementById("result").innerHTML =
+        f + "°F = " + c.toFixed(2) + "°C";
+    }
+  </script>
 
 </body>
 </html>
